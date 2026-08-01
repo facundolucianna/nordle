@@ -13,11 +13,47 @@
  */
 
 #include <stdio.h>
+#include <stdbool.h>
+#include <string.h>
 #include "nordle.h"
 
-int main(void) {
-    printf("Welcome to NORDLE!\n");
-    printf("Max attempts: %d, Word length: %d\n", MAX_ATTEMPTS, WORD_LENGTH);
-    return 0;
+/* Mockup validation function: checks if input has exactly WORD_LENGTH characters */
+static bool is_valid_input(const char *input) {
+    if (input == NULL) {
+        return false;
+    }
+    return (strlen(input) == WORD_LENGTH);
 }
 
+int main(void) {
+    printf("=== Welcome to NORDLE! ===\n\n");
+
+    char buffer[256];
+
+    for (int attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
+        bool valid = false;
+
+        while (!valid) {
+            printf("Attempt %d/%d - Enter a %d-letter word: ", attempt, MAX_ATTEMPTS, WORD_LENGTH);
+
+            if (fgets(buffer, sizeof(buffer), stdin) == NULL) {
+                printf("\nError or EOF reached.\n");
+                return 0;
+            }
+
+            /* Strip trailing newline character */
+            buffer[strcspn(buffer, "\r\n")] = '\0';
+
+            if (is_valid_input(buffer)) {
+                valid = true;
+            } else {
+                printf("Invalid input! Please enter a valid %d-letter word.\n\n", WORD_LENGTH);
+            }
+        }
+
+        printf("You entered: %s\n\n", buffer);
+    }
+
+    printf("Game loop completed.\n");
+    return 0;
+}
