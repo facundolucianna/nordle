@@ -1,6 +1,6 @@
-# Wordle Clone CLI
+# NORDLE
 
-A Command Line Interface (CLI) clone of the popular Wordle game written in C.
+**NORDLE** (*Nordle's Not Wordle*) is a Command Line Interface (CLI) word guessing game written in C.
 
 ## Requirements
 
@@ -18,7 +18,7 @@ make
 To run the application:
 
 ```bash
-./wordle_clon
+./nordle
 ```
 
 To clean up built binaries and object files:
