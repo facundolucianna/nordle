@@ -25,6 +25,7 @@ int main(void) {
   char buffer[256];
   char input_buffer[WORD_LENGTH + 1];
   letter_status_t results[WORD_LENGTH];
+  GameStatus game_status = GAME_LOST;
 
   for (int attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
     bool valid = false;
@@ -53,8 +54,11 @@ int main(void) {
     input_buffer[WORD_LENGTH] = '\0';
 
     if (check_word_letter(input_buffer, results)) {
+      printf("\n**************************************\n");
       printf("Congratulations! You guessed the word.\n");
-      return 0;
+      printf("**************************************\n");
+      game_status = GAME_WON;
+      break;
     }
 
     for (int i = 0; i < WORD_LENGTH; i++) {
@@ -62,6 +66,11 @@ int main(void) {
     }
   }
 
-  printf("Game loop completed.\n");
+  if (game_status == GAME_LOST) {
+    printf("\n*********\n");
+    printf("You lost!\n"); // TODO Add the solution world
+    printf("*********\n");
+  }
+
   return 0;
 }

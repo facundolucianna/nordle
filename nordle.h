@@ -26,6 +26,6 @@ typedef enum LetterStatus {
 } letter_status_t;
 
 /* Overall game state */
-typedef enum { GAME_PLAYING = 0, GAME_WON, GAME_LOST } GameStatus;
+typedef enum { GAME_WON, GAME_LOST } GameStatus;
 
 #endif /* NORDLE_H */
