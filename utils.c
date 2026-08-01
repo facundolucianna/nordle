@@ -39,7 +39,6 @@ static bool is_alpha_string(char *input) {
   return true;
 }
 
-// Check if the input is a valid WORD_LENGTH alphabetic word
 bool is_valid_input(char *input) {
   if (input == NULL) {
     return false;

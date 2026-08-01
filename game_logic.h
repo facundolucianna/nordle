@@ -18,13 +18,13 @@
 #include "nordle.h"
 #include <stdbool.h>
 
-/* Initializes a new game session with a random secret solution word */
+// Initializes a new game session with a random secret solution word
 void init_game(void);
 
-/* Returns the current secret solution word */
+// Returns the current secret solution word
 const char *get_secret_word(void);
 
-/* Checks the user's guess against the secret solution word */
+// Checks the user's guess against the secret solution word
 bool check_word_letter(const char *input, letter_status_t results[WORD_LENGTH]);
 
 #endif /* GAME_LOGIC_H */

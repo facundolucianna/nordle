@@ -25,14 +25,14 @@ void init_game(void) {
   secret_word[WORD_LENGTH] = '\0';
 }
 
-const char *get_secret_word(void) {
-  return secret_word;
-}
+const char *get_secret_word(void) { return secret_word; }
 
+// Check if the input is the solution word
 static bool check_word_is_solution(const char *input) {
   return strcmp(input, secret_word) == 0;
 }
 
+// Initialize the letter counts
 static void initialize_letter_counts(const char *word, int counts[256]) {
   memset(counts, 0, sizeof(int) * 256);
   for (int i = 0; i < WORD_LENGTH; i++) {
@@ -44,7 +44,7 @@ static void initialize_letter_counts(const char *word, int counts[256]) {
 bool check_word_letter(const char *input,
                        letter_status_t results[WORD_LENGTH]) {
 
-  // check if the word is the solution
+  // Check if the input is the solution word
   if (check_word_is_solution(input)) {
     return true;
   }
@@ -52,7 +52,7 @@ bool check_word_letter(const char *input,
   int counts[256];
   initialize_letter_counts(secret_word, counts);
 
-  // initialize results array
+  // Initialize results array
   for (int i = 0; i < WORD_LENGTH; i++) {
     results[i] = LETTER_ABSENT;
   }

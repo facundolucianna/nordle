@@ -18,8 +18,10 @@
 
 #include <stdbool.h>
 
-/* Check if the input is a valid WORD_LENGTH alphabetic word */
+// Check if the input is a valid WORD_LENGTH alphabetic word
 bool is_valid_input(char *input);
+
+// Generate the colored word in the output buffer to show the results
 void generate_colors_in_word(char *input, letter_status_t results[WORD_LENGTH],
                              char *output);
 #endif /* UTILS_H */
