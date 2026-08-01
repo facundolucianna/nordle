@@ -1,0 +1,50 @@
+/*
+ * Copyright (C) 2026 Facundo Lucianna
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+
+#include "utils.h"
+#include "nordle.h"
+#include <ctype.h>
+#include <stdio.h>
+#include <string.h>
+
+void lower_string(char *input) {
+    if (input == NULL) {
+        return;
+    }
+    while (*input != '\0') {
+        *input = (char)tolower((unsigned char)*input);
+        input++;
+    }
+}
+
+bool is_valid_input(char *input) {
+    if (input == NULL) {
+        return false;
+    }
+
+    input[strcspn(input, "\r\n")] = '\0';
+
+    /* Verify if input contains only alphabetic characters */
+    char *ptr = input;
+    while (*ptr != '\0') {
+        if (!isalpha((unsigned char)*ptr)) {
+            return false;
+        }
+        ptr++;
+    }
+
+    lower_string(input);
+
+    return (strlen(input) == WORD_LENGTH);
+}

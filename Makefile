@@ -8,7 +8,7 @@
 CC = clang
 CFLAGS = -Wall -Wextra -Werror -std=c11
 TARGET = nordle
-SRCS = main.c
+SRCS = main.c utils.c
 OBJS = $(SRCS:.c=.o)
 
 all: $(TARGET)

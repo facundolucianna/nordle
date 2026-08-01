@@ -14,46 +14,37 @@
 
 #include <stdio.h>
 #include <stdbool.h>
-#include <string.h>
 #include "nordle.h"
-
-/* Mockup validation function: checks if input has exactly WORD_LENGTH characters */
-static bool is_valid_input(const char *input) {
-    if (input == NULL) {
-        return false;
-    }
-    return (strlen(input) == WORD_LENGTH);
-}
+#include "utils.h"
 
 int main(void) {
-    printf("=== Welcome to NORDLE! ===\n\n");
+  printf("=== Welcome to NORDLE! ===\n\n");
 
-    char buffer[256];
+  char buffer[256];
 
-    for (int attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
-        bool valid = false;
+  for (int attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
+    bool valid = false;
 
-        while (!valid) {
-            printf("Attempt %d/%d - Enter a %d-letter word: ", attempt, MAX_ATTEMPTS, WORD_LENGTH);
+    while (!valid) {
+      printf("Attempt %d/%d - Enter a %d-letter word: ", attempt, MAX_ATTEMPTS,
+             WORD_LENGTH);
 
-            if (fgets(buffer, sizeof(buffer), stdin) == NULL) {
-                printf("\nError or EOF reached.\n");
-                return 0;
-            }
+      if (fgets(buffer, sizeof(buffer), stdin) == NULL) {
+        printf("\nError or EOF reached.\n");
+        return 0;
+      }
 
-            /* Strip trailing newline character */
-            buffer[strcspn(buffer, "\r\n")] = '\0';
-
-            if (is_valid_input(buffer)) {
-                valid = true;
-            } else {
-                printf("Invalid input! Please enter a valid %d-letter word.\n\n", WORD_LENGTH);
-            }
-        }
-
-        printf("You entered: %s\n\n", buffer);
+      if (is_valid_input(buffer)) {
+        valid = true;
+      } else {
+        printf("Invalid input! Please enter a valid %d-letter word.\n\n",
+               WORD_LENGTH);
+      }
     }
 
-    printf("Game loop completed.\n");
-    return 0;
+    printf("You entered: %s\n\n", buffer);
+  }
+
+  printf("Game loop completed.\n");
+  return 0;
 }
