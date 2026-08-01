@@ -6,7 +6,7 @@
 # (at your option) any later version.
 
 CC = clang
-CFLAGS = -Wall -Wextra -Werror -std=c11
+CFLAGS = -Wall -Wextra -Werror -std=c99
 TARGET = nordle
 SRCS = main.c utils.c game_logic.c words.c
 OBJS = $(SRCS:.c=.o)

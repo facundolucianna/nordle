@@ -1,9 +1,9 @@
 # NORDLE
 
-> **NORDLE** (*Nordle's Not Wordle*) is a lightweight, terminal-based CLI clone of the popular Wordle game written in C11.
+> **NORDLE** (*Nordle's Not Wordle*) is a lightweight, terminal-based CLI clone of the popular Wordle game written in C99 (compatible with C11 and later).
 
 > [!NOTE]
-> This is a **toy / educational project** created to explore C programming, C11 toolchain configuration, CLI color formatting, and algorithm design.
+> This is a **toy / educational project** created to explore C programming, toolchain configuration, CLI color formatting, and algorithm design.
 
 ---
 
@@ -37,7 +37,7 @@ NORDLE enforces official Wordle evaluation rules for duplicate letters.
 
 ## 🛠️ Requirements
 
-- **C Compiler**: `clang` (recommended on macOS) or `gcc` with C11 support.
+- **C Compiler**: `clang` (recommended on macOS) or `gcc` with C99/C11 support.
 - **Build System**: `make`.
 
 ---
@@ -65,4 +65,4 @@ make clean
 
 Copyright (C) 2026 Facundo Lucianna.
 
-This project is open-source software licensed under the terms of the **GNU General Public License v2.0 (GPL-2.0)**. See the [LICENSE](LICENSE) file for complete license text.
+This project is open-source software licensed under the terms of the **GNU General Public License v2.0 (GPL-2.0)**. See the [LICENSE](LICENSE) file for details.
