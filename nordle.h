@@ -25,11 +25,6 @@ typedef enum LetterStatus {
   LETTER_CORRECT     /* Letter is in the word, correct position (Green) */
 } letter_status_t;
 
-typedef struct LetterSolution {
-  char letter;
-  int repeats;
-} letter_solution_t;
-
 /* Overall game state */
 typedef enum { GAME_PLAYING = 0, GAME_WON, GAME_LOST } GameStatus;
 

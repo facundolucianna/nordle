@@ -22,40 +22,20 @@ bool check_world_is_solution(const char *input) {
   return strcmp(input, example_world) == 0;
 }
 
-void initialize_letter_solution(const char *input, letter_solution_t *letters) {
-
-  int empty_pos = 0;
-  int counter = 0;
-
+void initialize_letter_counts(const char *word, int counts[256]) {
+  memset(counts, 0, sizeof(int) * 256);
   for (int i = 0; i < WORD_LENGTH; i++) {
-    letters[i].letter = '\0';
-    letters[i].repeats = 0;
-  }
-
-  for (int i = 0; i < WORD_LENGTH; i++) {
-    counter = 0;
-    for (int j = 0; j < WORD_LENGTH; j++) {
-      if (input[i] == letters[j].letter) {
-        letters[j].repeats++;
-        break;
-      }
-      counter++;
-    }
-
-    if (counter == WORD_LENGTH) {
-      letters[empty_pos].letter = input[i];
-      letters[empty_pos].repeats = 1;
-      empty_pos++;
-    }
+    unsigned char c = word[i];
+    counts[c]++;
   }
 }
 
 void check_word_letter(const char *input,
                        letter_status_t results[WORD_LENGTH]) {
 
-  letter_solution_t letters[WORD_LENGTH];
-
-  initialize_letter_solution(example_world, letters);
+  int counts[256];
+  initialize_letter_counts(example_world, counts);
+  (void)counts;
 
   // initialize results array
   for (int i = 0; i < WORD_LENGTH; i++) {
