@@ -12,19 +12,12 @@
  * GNU General Public License for more details.
  */
 
-#ifndef GAME_LOGIC_H
-#define GAME_LOGIC_H
+#ifndef WORDS_H
+#define WORDS_H
 
-#include "nordle.h"
-#include <stdbool.h>
+#include <stddef.h>
 
-/* Initializes a new game session with a random secret solution word */
-void init_game(void);
+// Returns a randomly selected 5-letter word from the solution word list
+const char *get_random_word(void);
 
-/* Returns the current secret solution word */
-const char *get_secret_word(void);
-
-/* Checks the user's guess against the secret solution word */
-bool check_word_letter(const char *input, letter_status_t results[WORD_LENGTH]);
-
-#endif /* GAME_LOGIC_H */
+#endif /* WORDS_H */

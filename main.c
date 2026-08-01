@@ -20,8 +20,14 @@
 #include <string.h>
 
 int main(void) {
+  init_game();
+
   printf("=== Welcome to NORDLE! ===\n\n");
 
+  printf("\033[31mDEBUG: The secret word is %s\033[0m\n", get_secret_word());
+  printf("\033[1;32mDEBUG: The secret word is %s\033[0m\n", get_secret_word());
+  printf("\033[38;5;208mDEBUG: The secret word is %s\033[0m\n",
+         get_secret_word());
   char buffer[256];
   char input_buffer[WORD_LENGTH + 1];
   letter_status_t results[WORD_LENGTH];
@@ -67,9 +73,9 @@ int main(void) {
   }
 
   if (game_status == GAME_LOST) {
-    printf("\n*********\n");
-    printf("You lost!\n"); // TODO Add the solution world
-    printf("*********\n");
+    printf("\n*************************************\n");
+    printf("You lost! The secret word was: %s\n", get_secret_word());
+    printf("*************************************\n");
   }
 
   return 0;

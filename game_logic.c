@@ -14,18 +14,29 @@
 
 #include "game_logic.h"
 #include "nordle.h"
+#include "words.h"
 #include <string.h>
 
-static const char *example_world = "geese";
+static char secret_word[WORD_LENGTH + 1] = "apple";
 
-static bool check_world_is_solution(const char *input) {
-  return strcmp(input, example_world) == 0;
+void init_game(void) {
+  const char *word = get_random_word();
+  strncpy(secret_word, word, WORD_LENGTH);
+  secret_word[WORD_LENGTH] = '\0';
+}
+
+const char *get_secret_word(void) {
+  return secret_word;
+}
+
+static bool check_word_is_solution(const char *input) {
+  return strcmp(input, secret_word) == 0;
 }
 
 static void initialize_letter_counts(const char *word, int counts[256]) {
   memset(counts, 0, sizeof(int) * 256);
   for (int i = 0; i < WORD_LENGTH; i++) {
-    unsigned char c = word[i];
+    unsigned char c = (unsigned char)word[i];
     counts[c]++;
   }
 }
@@ -34,12 +45,12 @@ bool check_word_letter(const char *input,
                        letter_status_t results[WORD_LENGTH]) {
 
   // check if the word is the solution
-  if (check_world_is_solution(input)) {
+  if (check_word_is_solution(input)) {
     return true;
   }
 
   int counts[256];
-  initialize_letter_counts(example_world, counts);
+  initialize_letter_counts(secret_word, counts);
 
   // initialize results array
   for (int i = 0; i < WORD_LENGTH; i++) {
@@ -48,7 +59,7 @@ bool check_word_letter(const char *input,
 
   // First check all the LETTER_CORRECT and update the results array
   for (int i = 0; i < WORD_LENGTH; i++) {
-    if (input[i] == example_world[i]) {
+    if (input[i] == secret_word[i]) {
       results[i] = LETTER_CORRECT;
       counts[(unsigned char)input[i]]--;
     }
