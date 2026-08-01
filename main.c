@@ -24,11 +24,8 @@ int main(void) {
 
   printf("=== Welcome to NORDLE! ===\n\n");
 
-  printf("\033[31mDEBUG: The secret word is %s\033[0m\n", get_secret_word());
-  printf("\033[1;32mDEBUG: The secret word is %s\033[0m\n", get_secret_word());
-  printf("\033[38;5;208mDEBUG: The secret word is %s\033[0m\n",
-         get_secret_word());
   char buffer[256];
+  char buffer_colors[128];
   char input_buffer[WORD_LENGTH + 1];
   letter_status_t results[WORD_LENGTH];
   GameStatus game_status = GAME_LOST;
@@ -53,8 +50,6 @@ int main(void) {
       }
     }
 
-    printf("You entered: %s\n\n", buffer);
-
     // Copy only the word_length characters to input_buffer
     strncpy(input_buffer, buffer, WORD_LENGTH);
     input_buffer[WORD_LENGTH] = '\0';
@@ -67,9 +62,8 @@ int main(void) {
       break;
     }
 
-    for (int i = 0; i < WORD_LENGTH; i++) {
-      printf("SOL: %c: %d\n", input_buffer[i], results[i]);
-    }
+    generate_colors_in_word(input_buffer, results, buffer_colors);
+    printf("\n%s\n\n", buffer_colors);
   }
 
   if (game_status == GAME_LOST) {

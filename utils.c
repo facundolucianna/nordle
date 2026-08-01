@@ -13,7 +13,6 @@
  */
 
 #include "utils.h"
-#include "nordle.h"
 #include <ctype.h>
 #include <stdio.h>
 #include <string.h>
@@ -55,4 +54,24 @@ bool is_valid_input(char *input) {
   lower_string(input);
 
   return (strlen(input) == WORD_LENGTH);
+}
+
+void generate_colors_in_word(char *input, letter_status_t results[WORD_LENGTH],
+                             char *output) {
+
+  int offset = 0;
+  for (int i = 0; i < WORD_LENGTH; i++) {
+    switch (results[i]) {
+    case LETTER_CORRECT:
+      offset += sprintf(output + offset, "\033[1;32m%c\033[0m", input[i]);
+      break;
+    case LETTER_MISPLACED:
+      offset += sprintf(output + offset, "\033[38;5;208m%c\033[0m", input[i]);
+      break;
+    default:
+      offset += sprintf(output + offset, "%c", input[i]);
+      break;
+    }
+  }
+  output[offset] = '\0';
 }
