@@ -18,33 +18,38 @@
 #include <stdio.h>
 #include <string.h>
 
-void lower_string(char *input) {
-    if (input == NULL) {
-        return;
+static void lower_string(char *input) {
+  if (input == NULL) {
+    return;
+  }
+  while (*input != '\0') {
+    *input = (char)tolower((unsigned char)*input);
+    input++;
+  }
+}
+
+static bool is_alpha_string(char *input) {
+  while (*input != '\0') {
+    if (!isalpha(*input)) {
+      return false;
     }
-    while (*input != '\0') {
-        *input = (char)tolower((unsigned char)*input);
-        input++;
-    }
+    input++;
+  }
+  return true;
 }
 
 bool is_valid_input(char *input) {
-    if (input == NULL) {
-        return false;
-    }
+  if (input == NULL) {
+    return false;
+  }
 
-    input[strcspn(input, "\r\n")] = '\0';
+  input[strcspn(input, "\r\n")] = '\0';
 
-    /* Verify if input contains only alphabetic characters */
-    char *ptr = input;
-    while (*ptr != '\0') {
-        if (!isalpha((unsigned char)*ptr)) {
-            return false;
-        }
-        ptr++;
-    }
+  if (!is_alpha_string(input)) {
+    return false;
+  }
 
-    lower_string(input);
+  lower_string(input);
 
-    return (strlen(input) == WORD_LENGTH);
+  return (strlen(input) == WORD_LENGTH);
 }

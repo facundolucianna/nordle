@@ -12,15 +12,17 @@
  * GNU General Public License for more details.
  */
 
-#include <stdio.h>
-#include <stdbool.h>
 #include "nordle.h"
 #include "utils.h"
+#include <stdbool.h>
+#include <stdio.h>
+#include <string.h>
 
 int main(void) {
   printf("=== Welcome to NORDLE! ===\n\n");
 
   char buffer[256];
+  char input_buffer[WORD_LENGTH + 1];
 
   for (int attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
     bool valid = false;
@@ -43,6 +45,10 @@ int main(void) {
     }
 
     printf("You entered: %s\n\n", buffer);
+
+    // Copy only the word_length characters to input_buffer
+    strncpy(input_buffer, buffer, WORD_LENGTH);
+    input_buffer[WORD_LENGTH] = '\0';
   }
 
   printf("Game loop completed.\n");

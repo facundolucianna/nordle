@@ -17,9 +17,6 @@
 
 #include <stdbool.h>
 
-/* Convert a string to lowercase in-place */
-void lower_string(char *input);
-
 /* Check if the input is a valid WORD_LENGTH alphabetic word */
 bool is_valid_input(char *input);
 
