@@ -22,10 +22,59 @@ bool check_world_is_solution(const char *input) {
   return strcmp(input, example_world) == 0;
 }
 
-void check_word_letter(const char *input, LetterStatus results[WORD_LENGTH]) {
-  (void)input;
+void initialize_letter_solution(const char *input, letter_solution_t *letters) {
 
   for (int i = 0; i < WORD_LENGTH; i++) {
-    results[i] = LETTER_CORRECT;
+    letters[i].letter = '\0';
+    letters[i].repeats = 0;
+  }
+
+  for (int i = 0; i < WORD_LENGTH; i++) {
+    int counter = 0;
+    for (int j = 0; j < WORD_LENGTH; j++) {
+      if (input[i] == letters[j].letter) {
+        letters[i].repeats++;
+        break;
+      }
+      counter++;
+    }
+
+    if (counter == WORD_LENGTH) {
+      letters[i].letter = input[i];
+      letters[i].repeats = 1;
+    }
+  }
+}
+
+void check_word_letter(const char *input,
+                       letter_status_t results[WORD_LENGTH]) {
+
+  letter_solution_t letters[WORD_LENGTH];
+
+  initialize_letter_solution(example_world, letters);
+
+  // initialize results array
+  for (int i = 0; i < WORD_LENGTH; i++) {
+    results[i] = LETTER_ABSENT;
+  }
+
+  // First check all the LETTER_CORRECT and update the results array
+  for (int i = 0; i < WORD_LENGTH; i++) {
+    if (input[i] == example_world[i]) {
+      results[i] = LETTER_CORRECT;
+    }
+  }
+
+  // Now check LETTER_MISPLACED and update the results array
+  for (int i = 0; i < WORD_LENGTH; i++) {
+    for (int j = 0; j < WORD_LENGTH; j++) {
+      if (i == j)
+        continue;
+      if (input[i] == example_world[j]) {
+        if (results[i] != LETTER_CORRECT) {
+          results[i] = LETTER_MISPLACED;
+        }
+      }
+    }
   }
 }

@@ -24,6 +24,7 @@ int main(void) {
 
   char buffer[256];
   char input_buffer[WORD_LENGTH + 1];
+  letter_status_t results[WORD_LENGTH];
 
   for (int attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
     bool valid = false;
@@ -51,9 +52,15 @@ int main(void) {
     strncpy(input_buffer, buffer, WORD_LENGTH);
     input_buffer[WORD_LENGTH] = '\0';
 
-    if (check_world_is_solution(input_buffer)) {
-      printf("Congratulations! You guessed the word.\n");
-      return 0;
+    // if (check_world_is_solution(input_buffer)) {
+    //   printf("Congratulations! You guessed the word.\n");
+    //   return 0;
+    // }
+
+    check_word_letter(input_buffer, results);
+
+    for (int i = 0; i < WORD_LENGTH; i++) {
+      printf("%c: %d\n", input_buffer[i], results[i]);
     }
   }
 

@@ -15,10 +15,12 @@
 #ifndef GAME_LOGIC_H
 #define GAME_LOGIC_H
 
-#include <stdbool.h>
 #include "nordle.h"
+#include <stdbool.h>
 
 bool check_world_is_solution(const char *input);
-void check_word_letter(const char *input, LetterStatus results[WORD_LENGTH]);
+void check_word_letter(const char *input, letter_status_t results[WORD_LENGTH]);
+void initialize_letter_solution(const char *input,
+                                letter_solution_t letters[WORD_LENGTH]);
 
 #endif /* GAME_LOGIC_H */

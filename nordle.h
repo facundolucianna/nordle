@@ -19,17 +19,18 @@
 #define WORD_LENGTH 5
 
 /* Feedback status for each letter in a guess */
-typedef enum {
-    LETTER_ABSENT = 0,   /* Letter is not in the word (Gray) */
-    LETTER_MISPLACED,    /* Letter is in the word, wrong position (Yellow) */
-    LETTER_CORRECT       /* Letter is in the word, correct position (Green) */
-} LetterStatus;
+typedef enum LetterStatus {
+  LETTER_ABSENT = 0, /* Letter is not in the word (Gray) */
+  LETTER_MISPLACED,  /* Letter is in the word, wrong position (Yellow) */
+  LETTER_CORRECT     /* Letter is in the word, correct position (Green) */
+} letter_status_t;
+
+typedef struct LetterSolution {
+  char letter;
+  int repeats;
+} letter_solution_t;
 
 /* Overall game state */
-typedef enum {
-    GAME_PLAYING = 0,
-    GAME_WON,
-    GAME_LOST
-} GameStatus;
+typedef enum { GAME_PLAYING = 0, GAME_WON, GAME_LOST } GameStatus;
 
 #endif /* NORDLE_H */
