@@ -12,12 +12,24 @@
  * GNU General Public License for more details.
  */
 
-#include <stdio.h>
-#include "nordle.h"
+#ifndef NORDLE_H
+#define NORDLE_H
 
-int main(void) {
-    printf("Welcome to NORDLE!\n");
-    printf("Max attempts: %d, Word length: %d\n", MAX_ATTEMPTS, WORD_LENGTH);
-    return 0;
-}
+#define MAX_ATTEMPTS 6
+#define WORD_LENGTH 5
 
+/* Feedback status for each letter in a guess */
+typedef enum {
+    LETTER_ABSENT = 0,   /* Letter is not in the word (Gray) */
+    LETTER_MISPLACED,    /* Letter is in the word, wrong position (Yellow) */
+    LETTER_CORRECT       /* Letter is in the word, correct position (Green) */
+} LetterStatus;
+
+/* Overall game state */
+typedef enum {
+    GAME_PLAYING = 0,
+    GAME_WON,
+    GAME_LOST
+} GameStatus;
+
+#endif /* NORDLE_H */
