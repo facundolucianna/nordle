@@ -24,24 +24,28 @@ bool check_world_is_solution(const char *input) {
 
 void initialize_letter_solution(const char *input, letter_solution_t *letters) {
 
+  int empty_pos = 0;
+  int counter = 0;
+
   for (int i = 0; i < WORD_LENGTH; i++) {
     letters[i].letter = '\0';
     letters[i].repeats = 0;
   }
 
   for (int i = 0; i < WORD_LENGTH; i++) {
-    int counter = 0;
+    counter = 0;
     for (int j = 0; j < WORD_LENGTH; j++) {
       if (input[i] == letters[j].letter) {
-        letters[i].repeats++;
+        letters[j].repeats++;
         break;
       }
       counter++;
     }
 
     if (counter == WORD_LENGTH) {
-      letters[i].letter = input[i];
-      letters[i].repeats = 1;
+      letters[empty_pos].letter = input[i];
+      letters[empty_pos].repeats = 1;
+      empty_pos++;
     }
   }
 }
