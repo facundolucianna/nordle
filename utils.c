@@ -18,6 +18,7 @@
 #include <stdio.h>
 #include <string.h>
 
+// Convert a string to lowercase in-place
 static void lower_string(char *input) {
   if (input == NULL) {
     return;
@@ -28,6 +29,7 @@ static void lower_string(char *input) {
   }
 }
 
+// Check if the string contains only alphabetic characters
 static bool is_alpha_string(char *input) {
   while (*input != '\0') {
     if (!isalpha(*input)) {
@@ -38,6 +40,7 @@ static bool is_alpha_string(char *input) {
   return true;
 }
 
+// Check if the input is a valid WORD_LENGTH alphabetic word
 bool is_valid_input(char *input) {
   if (input == NULL) {
     return false;

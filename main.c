@@ -12,6 +12,7 @@
  * GNU General Public License for more details.
  */
 
+#include "game_logic.h"
 #include "nordle.h"
 #include "utils.h"
 #include <stdbool.h>
@@ -49,6 +50,11 @@ int main(void) {
     // Copy only the word_length characters to input_buffer
     strncpy(input_buffer, buffer, WORD_LENGTH);
     input_buffer[WORD_LENGTH] = '\0';
+
+    if (check_world_is_solution(input_buffer)) {
+      printf("Congratulations! You guessed the word.\n");
+      return 0;
+    }
   }
 
   printf("Game loop completed.\n");
