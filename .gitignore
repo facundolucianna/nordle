@@ -1,6 +1,7 @@
 # Executables
 wordle
 wordle_clon
+nordle
 
 # Object files
 *.o

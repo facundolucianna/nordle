@@ -1,4 +1,4 @@
-# Wordle CLI
+# Wordle Clone CLI
 
 A Command Line Interface (CLI) clone of the popular Wordle game written in C.
 

@@ -7,7 +7,7 @@
 
 CC = clang
 CFLAGS = -Wall -Wextra -Werror -std=c11
-TARGET = wordle_clon
+TARGET = nordle
 SRCS = main.c
 OBJS = $(SRCS:.c=.o)
 
