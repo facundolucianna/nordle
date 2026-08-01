@@ -52,15 +52,13 @@ int main(void) {
     strncpy(input_buffer, buffer, WORD_LENGTH);
     input_buffer[WORD_LENGTH] = '\0';
 
-    // if (check_world_is_solution(input_buffer)) {
-    //   printf("Congratulations! You guessed the word.\n");
-    //   return 0;
-    // }
-
-    check_word_letter(input_buffer, results);
+    if (check_word_letter(input_buffer, results)) {
+      printf("Congratulations! You guessed the word.\n");
+      return 0;
+    }
 
     for (int i = 0; i < WORD_LENGTH; i++) {
-      printf("%c: %d\n", input_buffer[i], results[i]);
+      printf("SOL: %c: %d\n", input_buffer[i], results[i]);
     }
   }
 
