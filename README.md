@@ -17,7 +17,7 @@ After each guess, the terminal provides feedback using ANSI color formatting:
 - 🟧 **Orange / Yellow**: The letter is in the word, but in the **wrong position**.
 - ⬛ **Standard / Normal**: The letter is **not in the word**.
 
-NORDLE enforces official Wordle evaluation rules for duplicate letters using an efficient single-pass frequency algorithm.
+NORDLE enforces official Wordle evaluation rules for duplicate letters.
 
 ---
 
@@ -28,7 +28,7 @@ NORDLE enforces official Wordle evaluation rules for duplicate letters using an 
 - **Input Validation**: Automatically validates inputs to ensure they are 5-letter alphabetic words, converting uppercase inputs to lowercase seamlessly.
 - **Clean & Modular Architecture**:
   - `main.c`: CLI interface and main game loop.
-  - `game_logic.c` / `game_logic.h`: Core Wordle $O(N)$ evaluation engine.
+  - `game_logic.c` / `game_logic.h`: Core Wordle evaluation engine.
   - `utils.c` / `utils.h`: Input validation, sanitization, and ANSI color buffer formatting.
   - `words.c` / `words.h`: Word list repository and random word picker.
   - `nordle.h`: Global game constants and type definitions.
