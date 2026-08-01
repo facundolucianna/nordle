@@ -1,0 +1,6 @@
+# Executables
+wordle
+wordle_clon
+
+# Object files
+*.o
